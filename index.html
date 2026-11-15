@@ -1,97 +1,244 @@
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parfumerie 51 | Catalogue</title>
-<style>
-*{box-sizing:border-box}
-body{
- margin:0;background:#101010;color:#fff;
- font-family:Arial,sans-serif;
-}
-header{
- text-align:center;padding:35px 15px;
- background:linear-gradient(145deg,#292016,#080808);
- border-bottom:1px solid #b99750;
-}
-h1{color:#d6b66b;letter-spacing:2px}
-header p{color:#ddd}
-main{max-width:900px;margin:auto;padding:20px}
-input,select{
- width:100%;padding:14px;margin:8px 0;
- border:1px solid #b99750;border-radius:8px;
- background:#202020;color:white;font-size:16px;
-}
-.filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.products{
- display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
-}
-.card{
- background:#1c1c1c;border:1px solid #8d713b;
- border-radius:12px;padding:16px;text-align:center;
-}
-.card h3{color:#e0c47d}
-.code{color:#aaa;font-size:13px}
-.price{color:#e0c47d;font-weight:bold}
-footer{text-align:center;padding:25px;color:#c5a45e}
-@media(min-width:650px){
- .products{grid-template-columns:repeat(3,1fr)}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Parfumerie 51 | Catalogue</title>
+  <style>
+    :root {
+      --gold: #d5b46a;
+      --gold2: #f0d99a;
+      --bg: #090909;
+      --muted: #aaa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at top,#242018 0,#0b0b0b 42%,#050505 100%);
+      color: #f5f1e8;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 38px 18px 25px;
+      border-bottom: 1px solid #4a3b20;
+    }
+    .brand {
+      font-family: Georgia,serif;
+      font-size: clamp(30px,7vw,52px);
+      letter-spacing: 3px;
+      color: var(--gold2);
+      margin: 0;
+    }
+    .subtitle {
+      color: #d2c6aa;
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-top: 9px;
+    }
+    .intro {
+      color: #bdb6a7;
+      font-size: 14px;
+      margin: 18px auto 0;
+      max-width: 540px;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 24px 16px 55px;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    input,select {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 10px;
+      border: 1px solid #554626;
+      background: #151515;
+      color: #f5f1e8;
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus,select:focus { border-color: var(--gold); }
+    .count {
+      color: var(--muted);
+      font-size: 12px;
+      margin: 0 2px 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(215px,1fr));
+      gap: 14px;
+    }
+    .product {
+      background: linear-gradient(145deg,#1b1b1b,#101010);
+      border: 1px solid #44371f;
+      border-radius: 15px;
+      padding: 18px;
+      min-height: 174px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product:before {
+      content: "";
+      position: absolute;
+      right: -35px;
+      top: -45px;
+      width: 115px;
+      height: 115px;
+      border: 1px solid #574725;
+      border-radius: 50%;
+      opacity: .45;
+    }
+    .brand-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .code {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 5px 9px;
+      border: 1px solid #806a3c;
+      border-radius: 6px;
+      color: var(--gold2);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .name {
+      font-family: Georgia,serif;
+      font-size: 20px;
+      margin: 12px 0 4px;
+      color: #fff;
+    }
+    .type {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+    .empty {
+      grid-column: 1/-1;
+      text-align: center;
+      color: #aaa;
+      padding: 35px 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 18px;
+      color: #82775f;
+      font-size: 11px;
+      border-top: 1px solid #302719;
+      letter-spacing: 1px;
+    }
+    @media(max-width:520px) {
+      .controls { grid-template-columns: 1fr; }
+      .product { min-height: 160px; }
+    }
+  </style>
 </head>
 <body>
-<header>
-<h1>PARFUMERIE 51</h1>
-<p>Collection Parfum • Élégance & Excellence</p>
-</header>
-<main>
-<h2 style="color:#d6b66b;text-align:center">كتالوغ العطور</h2>
-<input id="search" placeholder="قلب على اسم العطر أو الكود...">
-<div class="filters">
-<select id="gender">
-<option value="all">جميع العطور</option>
-<option value="homme">Pour Homme</option>
-<option value="femme">Pour Femme</option>
-</select>
-<select id="brand">
-<option value="all">جميع الماركات</option>
-<option value="Armani">Armani</option>
-<option value="Chanel">Chanel</option>
-<option value="Azzaro">Azzaro</option>
-</select>
-</div>
-<div class="products" id="products"></div>
-</main>
-<footer>© 2026 PARFUMERIE 51</footer>
-<script>
-const perfumes = [
- {name:"Sauvage",code:"H001",brand:"Dior",gender:"homme",price:""},
- {name:"Stronger With You",code:"H156",brand:"Armani",gender:"homme",price:""},
- {name:"Bleu de Chanel",code:"H093",brand:"Chanel",gender:"homme",price:""}
-];
-function show(){
- const q=document.getElementById("search").value.toLowerCase();
- const g=document.getElementById("gender").value;
- const b=document.getElementById("brand").value;
- const list=perfumes.filter(p=>
- (p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q))&&
- (g==="all"||p.gender===g)&&
- (b==="all"||p.brand===b)
- );
- document.getElementById("products").innerHTML=list.map(p=>`
- <div class="card">
- <h3>${p.name}</h3>
- <div class="code">${p.code} • ${p.brand}</div>
- <p>${p.gender==="homme"?"Pour Homme":"Pour Femme"}</p>
- <div class="price">${p.price}</div>
- </div>`).join("")||"<p>ما لقينا حتى عطر</p>";
-}
-document.getElementById("search").addEventListener("input",show);
-document.getElementById("gender").addEventListener("change",show);
-document.getElementById("brand").addEventListener("change",show);
-show();
-</script>
+  <header>
+    <h1 class="brand">PARFUMERIE 51</h1>
+    <div class="subtitle">COLLECTION PARFUM</div>
+    <p class="intro">
+      اكتشف مجموعتنا من العطور، واختار الريحة اللي كتناسب ذوقك وشخصيتك.
+    </p>
+  </header>
+
+  <main>
+    <div class="controls">
+      <input id="search" type="search" placeholder="قلب على العطر أو الكود..." aria-label="بحث">
+
+      <select id="brand" aria-label="اختار الماركة">
+        <option value="">جميع الماركات</option>
+        <option>Armani</option>
+        <option>Chanel</option>
+        <option>Azzaro</option>
+      </select>
+
+      <select id="gender" aria-label="اختار النوع">
+        <option value="">جميع الأنواع</option>
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+      </select>
+
+      <select id="sort" aria-label="ترتيب">
+        <option value="default">الترتيب الافتراضي</option>
+        <option value="name">ترتيب حسب الاسم</option>
+        <option value="code">ترتيب حسب الكود</option>
+      </select>
+    </div>
+
+    <p class="count" id="count"></p>
+    <section class="grid" id="products" aria-live="polite"></section>
+  </main>
+
+  <footer>PARFUMERIE 51 · L'ÉLÉGANCE À CHAQUE GOUTTE</footer>
+
+  <script>
+    const perfumes = [
+      {brand:"Armani", code:"H156", name:"Stronger With You", gender:"Homme"},
+      {brand:"Armani", code:"H107", name:"Armani Code", gender:"Homme"},
+      {brand:"Armani", code:"H004", name:"Acqua di Gio", gender:"Homme"},
+      {brand:"Armani", code:"H171", name:"Code Absolu", gender:"Homme"},
+      {brand:"Chanel", code:"H024", name:"Allure Sport", gender:"Homme"},
+      {brand:"Chanel", code:"H093", name:"Bleu de Chanel", gender:"Homme"},
+      {brand:"Azzaro", code:"H141", name:"Wanted Azzaro", gender:"Homme"},
+      {brand:"Azzaro", code:"H008", name:"Chrome Azzaro", gender:"Homme"}
+    ];
+
+    const search = document.getElementById('search');
+    const brand = document.getElementById('brand');
+    const gender = document.getElementById('gender');
+    const sort = document.getElementById('sort');
+    const products = document.getElementById('products');
+    const count = document.getElementById('count');
+
+    function render() {
+      let list = perfumes.filter(p =>
+        (
+          p.name.toLowerCase().includes(search.value.toLowerCase()) ||
+          p.code.toLowerCase().includes(search.value.toLowerCase()) ||
+          p.brand.toLowerCase().includes(search.value.toLowerCase())
+        ) &&
+        (!brand.value || p.brand === brand.value) &&
+        (!gender.value || p.gender === gender.value)
+      );
+
+      if (sort.value === 'name')
+        list.sort((a,b) => a.name.localeCompare(b.name));
+
+      if (sort.value === 'code')
+        list.sort((a,b) => a.code.localeCompare(b.code));
+
+      count.textContent = `عدد العطور: ${list.length}`;
+
+      products.innerHTML = list.length
+        ? list.map(p => `
+          <article class="product">
+            <div class="brand-tag">${p.brand}</div>
+            <div class="code">${p.code}</div>
+            <h2 class="name">${p.name}</h2>
+            <div class="type">${p.gender}</div>
+          </article>
+        `).join('')
+        : '<div class="empty">ما لقيناش هاد العطر فالكاطالوغ</div>';
+    }
+
+    [search,brand,gender,sort].forEach(el =>
+      el.addEventListener('input',render)
+    );
+
+    render();
+  </script>
 </body>
 </html>
