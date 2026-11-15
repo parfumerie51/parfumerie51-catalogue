@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parfumerie 51 | Catalogue</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#101010;color:#fff;
+ font-family:Arial,sans-serif;
+}
+header{
+ text-align:center;padding:35px 15px;
+ background:linear-gradient(145deg,#292016,#080808);
+ border-bottom:1px solid #b99750;
+}
+h1{color:#d6b66b;letter-spacing:2px}
+header p{color:#ddd}
+main{max-width:900px;margin:auto;padding:20px}
+input,select{
+ width:100%;padding:14px;margin:8px 0;
+ border:1px solid #b99750;border-radius:8px;
+ background:#202020;color:white;font-size:16px;
+}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.products{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+}
+.card{
+ background:#1c1c1c;border:1px solid #8d713b;
+ border-radius:12px;padding:16px;text-align:center;
+}
+.card h3{color:#e0c47d}
+.code{color:#aaa;font-size:13px}
+.price{color:#e0c47d;font-weight:bold}
+footer{text-align:center;padding:25px;color:#c5a45e}
+@media(min-width:650px){
+ .products{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>PARFUMERIE 51</h1>
+<p>Collection Parfum • Élégance & Excellence</p>
+</header>
+<main>
+<h2 style="color:#d6b66b;text-align:center">كتالوغ العطور</h2>
+<input id="search" placeholder="قلب على اسم العطر أو الكود...">
+<div class="filters">
+<select id="gender">
+<option value="all">جميع العطور</option>
+<option value="homme">Pour Homme</option>
+<option value="femme">Pour Femme</option>
+</select>
+<select id="brand">
+<option value="all">جميع الماركات</option>
+<option value="Armani">Armani</option>
+<option value="Chanel">Chanel</option>
+<option value="Azzaro">Azzaro</option>
+</select>
+</div>
+<div class="products" id="products"></div>
+</main>
+<footer>© 2026 PARFUMERIE 51</footer>
+<script>
+const perfumes = [
+ {name:"Sauvage",code:"H001",brand:"Dior",gender:"homme",price:""},
+ {name:"Stronger With You",code:"H156",brand:"Armani",gender:"homme",price:""},
+ {name:"Bleu de Chanel",code:"H093",brand:"Chanel",gender:"homme",price:""}
+];
+function show(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const g=document.getElementById("gender").value;
+ const b=document.getElementById("brand").value;
+ const list=perfumes.filter(p=>
+ (p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q))&&
+ (g==="all"||p.gender===g)&&
+ (b==="all"||p.brand===b)
+ );
+ document.getElementById("products").innerHTML=list.map(p=>`
+ <div class="card">
+ <h3>${p.name}</h3>
+ <div class="code">${p.code} • ${p.brand}</div>
+ <p>${p.gender==="homme"?"Pour Homme":"Pour Femme"}</p>
+ <div class="price">${p.price}</div>
+ </div>`).join("")||"<p>ما لقينا حتى عطر</p>";
+}
+document.getElementById("search").addEventListener("input",show);
+document.getElementById("gender").addEventListener("change",show);
+document.getElementById("brand").addEventListener("change",show);
+show();
+</script>
+</body>
+</html>
